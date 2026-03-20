@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #090909;
+    color: #e8e8e8;
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  /* Scanline overlay effect */
+  .scanlines::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.15) 2px,
+      rgba(0, 0, 0, 0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Neon glow utilities */
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.3), 0 0 60px rgba(0, 229, 255, 0.1);
+  }
+
+  .glow-pink {
+    box-shadow: 0 0 20px rgba(255, 45, 120, 0.3), 0 0 60px rgba(255, 45, 120, 0.1);
+  }
+
+  .glow-text-cyan {
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.8);
+  }
+
+  .glow-text-pink {
+    text-shadow: 0 0 20px rgba(255, 45, 120, 0.8);
+  }
+
+  /* Corner brackets for camera frame */
+  .corner-bracket {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+  }
+
+  .corner-bracket::before,
+  .corner-bracket::after {
+    content: '';
+    position: absolute;
+    background: #00e5ff;
+  }
+
+  .corner-bracket::before {
+    width: 100%;
+    height: 2px;
+    top: 0;
+    left: 0;
+  }
+
+  .corner-bracket::after {
+    width: 2px;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .corner-bracket.tr {
+    top: -2px;
+    right: -2px;
+    transform: rotate(90deg);
+  }
+
+  .corner-bracket.bl {
+    bottom: -2px;
+    left: -2px;
+    transform: rotate(270deg);
+  }
+
+  .corner-bracket.br {
+    bottom: -2px;
+    right: -2px;
+    transform: rotate(180deg);
+  }
+
+  .corner-bracket.tl {
+    top: -2px;
+    left: -2px;
+  }
+
+  /* Animated bar */
+  .confidence-bar {
+    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Video flip horizontal for mirror effect */
+  .mirror {
+    transform: scaleX(-1);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Bebas Neue', cursive;
+  }
+
+  .font-mono-custom {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
